@@ -201,7 +201,154 @@
 
 
 
+### 获取Class对象
 
+- 通过具体类获得
+
+  ```java
+  Class clazz = User.clss
+  ```
+
+- 通过全类名获得
+
+  ```java
+  Class clazz = Class.forName("com.dong.entity.User")
+  ```
+
+- 通过具体对象获得
+
+  ```java
+  Class clazz = user.getClass
+  ```
+
+- 通过类加载器获得
+
+  ```java
+  Class clazz = ClassLoader.getSystemClassLoader().loaderClass("com.dong.entity.User")
+  ```
+
+
+
+### 创建对象实例
+
+- 直接使用newInstance()方法,默认使用无参
+
+  ```java
+  User user = clazz.newInstance()
+  ```
+
+- 先获得构造器,使用构造器创建对象
+
+  ```java
+  Constructor constructor = clazz.getConstructor(String.class,Integer.class)
+  User user = constructor.newInstance("大白",222)
+  ```
+
+
+
+### 获取方法
+
+- 获取所有公共方法,包括继承的方法
+
+  ```java
+  Method[] methods = clazz.getMethods()
+  ```
+
+- 获取所有方法,但不包括继承的方法
+
+  ```java
+  Method[] methods = clazz.getDeclaredMethods()
+  ```
+
+- 获取特定的公共方法
+
+  ```java
+  Method method = clazz.getMethod(Name,ParameterType)
+  ```
+
+- 获取特定的非公共方法
+
+  ```java 
+  Method method = clazz.getDeclaredMethod(Name,ParameterType)
+  ```
+
+
+
+### 获取字段
+
+- 获取所有公共字段
+
+  ```java
+  Field[] field = clazz.getFields()
+  ```
+
+- 获取所有字段
+
+  ```java
+  Field[] field = clazz.getDeclaredFields()
+  ```
+
+- 获取特定的公共字段
+
+  ```java
+  Field field = clazz.getField(Name)
+  ```
+
+- 获取特定的非公共字段
+
+  ```java
+  Field field = clazz.getDeclaredField(Name)
+  ```
+
+  
+
+
+
+### 获取构造器
+
+- 获取所有公共构造器
+
+  ```java
+  Constructor[] constructor = clazz.getConstructors()
+  ```
+
+- 获取所有构造器
+
+  ```java
+  Constructor[] constructor = clazz.getDeclaredConstructors()
+  ```
+
+- 获取特定的公共构造器
+
+  ```java
+  Constructor constructor = clazz.getConstructor(ParameterType)
+  ```
+
+- 获取特定的非公共构造器
+
+  ```java
+  Constructor constructor = clazz.getDeclaredConstructor(ParameterType)
+  ```
+
+  
+
+
+
+### 调用方法
+
+使用Method类的invoke()方法
+
+methodName.invoke(Object,Object... args)
+
+```
+User user = clazz.newInstance()
+
+Method setName = clazz.getMethod("setName",String.class)
+Method getName = clazz.getMethod("getName")
+
+setName.invoke(user,"小白")
+Object result = getName.invoke(user)
+```
 
 
 
