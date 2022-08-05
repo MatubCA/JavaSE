@@ -4,6 +4,9 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/Reflection/pom.xml" />
+        <option value="$PROJECT_DIR$/Collections/pom.xml" />
+        <option value="$PROJECT_DIR$/InnerClass/pom.xml" />
+        <option value="$PROJECT_DIR$/Lambda/pom.xml" />
       </list>
     </option>
   </component>
