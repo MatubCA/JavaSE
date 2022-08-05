@@ -29,9 +29,10 @@ public class LambdaTest {
     @Test
     public void test2(){
         NoReturnOneParam noReturnoneParam = (a) -> {
+            a += 1;
             System.out.println(a);
         };
-        noReturnoneParam.method(11);
+        noReturnoneParam.method(9);
     }
 
     /*
@@ -50,11 +51,9 @@ public class LambdaTest {
      */
     @Test
     public void test4(){
-        ReturnOneParam ReturnOneParam = (a) -> {
-            System.out.println(a);
-            return a;
-        };
-        ReturnOneParam.method(99);
+        ReturnOneParam ReturnOneParam = a -> a + 1;
+
+        System.out.println(ReturnOneParam.method(99));
     }
 
     /*
@@ -63,9 +62,9 @@ public class LambdaTest {
     @Test
     public void test5(){
         ReturnNoParam ReturnNoParam = () -> {
-            return "hello";
+            return 11;
         };
-        ReturnNoParam.method();
+        System.out.println(ReturnNoParam.method());
     }
 
     /*

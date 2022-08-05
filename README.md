@@ -633,19 +633,23 @@ public void test1(){
 
 lambda作为就Java8的新特性,可以取代大部分匿名内部类,达到简化代码的作用
 
+
+
 ### 对接口的要求
 
 虽然Lambda表达式可以对接口进行简单的实现,但并不是所有接口都可以使用Lambda表达式,Lambda规定接口中只能有一个需要被实现的方法,并不是说接口中只能有一个方法!(比如说default修饰的方法,会有默认实现)
+
+
 
 ### @FunctionInterface
 
 修饰函数式接口,要求接口中只能有一个抽象方法
 
+
+
 ### 基础语法
 
-
-
-接口抽象方法
+无参无返回值
 
 ```java
 /* 无参无返回 */
@@ -653,20 +657,123 @@ lambda作为就Java8的新特性,可以取代大部分匿名内部类,达到简�
 public interface NoReturnNoParam {
     void method();
 }
-```
 
-测试
-
-```java
 /*
-    测试无参无返回值的接口方法
- */
+	测试
+*/
 @Test
 public void test1(){
     NoReturnNoParam noReturnNoParam = () -> {
         System.out.println("hello");
     };
     noReturnNoParam.method();
+}
+```
+
+一个参数无返回值
+
+```java
+/* 一个参数无返回 */
+@FunctionalInterface
+public interface NoReturnOneParam {
+    void method(Integer num);
+}
+
+/*
+	测试
+*/
+@Test
+public void test2(){
+    NoReturnOneParam noReturnoneParam = (a) -> {
+        a += 1;
+        System.out.println(a);
+    };
+    noReturnoneParam.method(9);
+}
+```
+
+多个参数无返回值
+
+```java
+/* 多参数无返回 */
+@FunctionalInterface
+public interface NoReturnMultiParam {
+    void method(int x,int y);
+}
+
+/*
+	测试
+*/
+@Test
+public void test3(){
+    NoReturnMultiParam noReturnmultiParam = (x,y) -> {
+        System.out.println(x+y);
+    };
+    noReturnmultiParam.method(1,2);
+}
+```
+
+无参有返回值
+
+```java
+/* 无参有返回值 */
+@FunctionalInterface
+public interface ReturnNoParam {
+    int method();
+}
+
+/*
+	测试
+*/
+@Test
+public void test5(){
+    ReturnNoParam ReturnNoParam = () -> {
+        return 11;
+    };
+    System.out.println(ReturnNoParam.method());
+}
+```
+
+一个参数有返回值
+
+```java
+/* 一个参数有返回值 */
+@FunctionalInterface
+public interface ReturnOneParam {
+    int method(int num);
+}
+
+/*
+	测试
+*/
+@Test
+public void test4(){
+    ReturnOneParam ReturnOneParam = (a) -> {
+        return a + 1;
+    };
+    System.out.println(ReturnOneParam.method(99));
+}
+```
+
+多个参数有返回值
+
+```java
+/* 多个参数有返回值 */
+@FunctionalInterface
+public interface ReturnMultiParam {
+    int method(int arg1, int arg2);
+}
+
+/*
+	测试
+*/
+@Test
+public void test6(){
+    ReturnMultiParam ReturnMultiParam = (x,y) -> {
+        System.out.println(x+y);
+        return x+y;
+    };
+    ReturnMultiParam.method(99,1);
 }
 ```
 
@@ -679,159 +786,188 @@ public void test1(){
 - 简化大括号,如果方法体只有一条语句可以省略大括号
   - 如果一条语句是return语句,return可以忽略
 
+```java
+/* 一个参数有返回值 */
+@FunctionalInterface
+public interface ReturnOneParam {
+    int method(int num);
+}
+
+/*
+	测试
+*/
+@Test
+public void test4(){
+    ReturnOneParam ReturnOneParam = a -> a + 1;
+    System.out.println(ReturnOneParam.method(99));
+}
+```
+
 
 
 ### Lambda表达式常用示例
 
-- 引用方法
+***1. 引用方法***
 
-  > 有时我们不必亲自重写匿名内部类的方法,可以利用Lambda表达式指向已经实现的接口方法
-  >
-  > 语法: 方法归属者::方法 静态方法归属类;普通方法归属对象
-  >
-  > ```java
-  > public class Exe1 {
-  > 
-  >     public static void main(String[] args) {
-  >         ReturnOneParam returnOneParam1 = num -> method1(num);
-  >         System.out.println(returnOneParam1.method(99));
-  > 
-  >         ReturnOneParam returnOneParam2 = Exe1::method1;
-  >         System.out.println(returnOneParam2.method(99));
-  > 
-  >         Exe1 exe1 = new Exe1();
-  >         ReturnMultiParam returnMultiParam2 = exe1::method2;
-  >         System.out.println(returnMultiParam2.method(99, 1));
-  >     }
-  > 
-  >     /*
-  >         接口的实现方法,返回值与参数与接口方法一致
-  >      */
-  >     public static int method1(int num){
-  >         return num+1;
-  >     }
-  > 
-  >     public int method2(int arg1, int arg2){
-  >         return arg1+arg2;
-  >     }
-  > }
-  > ```
+有时我们不必亲自重写匿名内部类的方法,可以利用Lambda表达式指向已经实现的接口方法
 
-- 引用构造方法
+语法: 方法归属者::方法 静态方法归属类;普通方法归属对象
 
-  > 需要创建接口,将该接口作为对象的生成器
-  >
-  > 语法: 类名::new 实例化对象,调用方法返回对象
-  >
-  > ```java
-  > public class Exe2 {
-  >     public static void main(String[] args) {
-  >         NoParamConstructor create = () -> new User();
-  >         User user = create.getUser();
-  >         System.out.println(user);
-  > 
-  >         NoParamConstructor create1 = User::new;
-  >         User user1 = create1.getUser();
-  >         System.out.println(user1);
-  > 
-  >         ParamConstructor create3 = User::new;
-  >         User user2 = create3.getUser("张三", 22);
-  >         System.out.println(user2);
-  >     }
-  > }
-  > 
-  > interface NoParamConstructor{
-  >     User getUser();
-  > }
-  > 
-  > interface ParamConstructor{
-  >     User getUser(String name,int age);
-  > }
-  > ```
+```java
+public class Exe1 {
 
-- 创建线程
+ public static void main(String[] args) {
+     // Lambda普通形式
+     ReturnOneParam returnOneParam1 = num -> method1(num);
+     System.out.println(returnOneParam1.method(99));
 
-  > 通过创建Thread对象,然后通过匿名内部类重写run()方法,可以使用Lambda表达式简化这一过程
-  >
-  > ```java
-  > Thread t = new Thread(() -> {
-  >     
-  >     for (int i = 0; i < 10; i++) {
-  >         System.out.println(2 + ":" + i);
-  >         }
-  > });
-  > t.start();
-  > ```
+     // Lambda简化形式
+     // 静态方法归属类
+     ReturnOneParam returnOneParam2 = Exe1::method1;
+     System.out.println(returnOneParam2.method(99));
 
-- 遍历集合
+     // 普通方法归属对象
+     Exe1 exe1 = new Exe1();
+     ReturnMultiParam returnMultiParam2 = exe1::method2;
+     System.out.println(returnMultiParam2.method(99, 1));
+ }
 
-  > 调用集合的``public void forEach(Consumer<? super E> action)`` Consumer是JDK为我们提供的函数式接口
-  >
-  > ```java
-  > public class ListDemo {
-  >     public static void main(String[] args) {
-  >         List<String> list = new ArrayList<>();
-  >         list.add("大白");
-  >         list.add("小白");
-  > 
-  >         list.forEach(System.out::println);
-  > 
-  >         list.forEach(str -> {
-  >             if (str.equals("大白")){
-  >                 System.out.println(true);
-  >             }
-  >         });
-  >     }
-  > }
-  > ```
+ /*
+     接口的实现方法,返回值与参数与接口方法一致
+  */
+ public static int method1(int num){
+     return num+1;
+ }
 
-- 删除集中的元素
-
-  > 调用集合的``public boolean removeIf(Predicate<? super E> filter)`` Predicate也是JDK提供的函数式接口
-  >
-  > ```java
-  > public class ListDemo2 {
-  >     public static void main(String[] args) {
-  >         List<String> list = new ArrayList<String>();
-  >         list.add("大白");
-  >         list.add("小白");
-  > 
-  >         list.removeIf(str -> str.equals("大白"));
-  > 
-  >         list.forEach(System.out::println);
-  >     }
-  > }
-  > ```
-
-- 集合元素的排序
-
-  > 以前我们为集合元素排序,调用sort方法,传入比较器匿名内部类,重写Comparator方法
-  >
-  > ```java
-  > public class ListDemo3 {
-  >     public static void main(String[] args) {
-  >         List<Integer> list = new ArrayList<Integer>();
-  >         list.add(13);
-  >         list.add(14);
-  >         list.add(89);
-  >         list.add(5);
-  > 
-  >         /*list.sort(new Comparator<Integer>() {
-  > 
-  >             @Override
-  >             public int compare(Integer o1, Integer o2) {
-  >                 return o1 - o2;
-  >             }
-  >         });*/
-  > 
-  >         list.sort((o1,o2) -> o1 - o2);
-  > 
-  >         list.forEach(System.out::println);
-  >     }
-  > }
-  > ```
+ public int method2(int arg1, int arg2){
+     return arg1+arg2;
+ }
+}
+```
 
 
+
+***2. 引用构造方法***
+
+需要创建接口,将该接口作为对象的生成器
+
+需要创建接口,将该接口作为对象的生成器
+
+```java
+public class Exe2 {
+ public static void main(String[] args) {
+     NoParamConstructor create = () -> new User();
+     User user = create.getUser();
+     System.out.println(user);
+
+     NoParamConstructor create1 = User::new;
+     User user1 = create1.getUser();
+     System.out.println(user1);
+
+     ParamConstructor create3 = User::new;
+     User user2 = create3.getUser("张三", 22);
+     System.out.println(user2);
+ }
+}
+
+interface NoParamConstructor{
+ User getUser();
+}
+
+interface ParamConstructor{
+ User getUser(String name,int age);
+}
+```
+
+
+
+***3. 创建线程***
+
+通过创建Thread对象,然后通过匿名内部类重写run()方法,可以使用Lambda表达式简化这一过程
+
+```java
+Thread t = new Thread(() -> {
+
+ for (int i = 0; i < 10; i++) {
+     System.out.println(2 + ":" + i);
+     }
+});
+t.start();
+```
+
+
+
+***4. 遍历集合***
+
+调用集合的``public void forEach(Consumer<? super E> action)`` Consumer是JDK为我们提供的函数式接口
+
+```java
+public class ListDemo {
+ public static void main(String[] args) {
+     List<String> list = new ArrayList<>();
+     list.add("大白");
+     list.add("小白");
+
+     list.forEach(System.out::println);
+
+     list.forEach(str -> {
+         if (str.equals("大白")){
+             System.out.println(true);
+         }
+     });
+ }
+}
+```
+
+
+
+***5. 删除集中的元素***
+
+调用集合的``public boolean removeIf(Predicate<? super E> filter)`` Predicate也是JDK提供的函数式接口
+
+```java
+public class ListDemo2 {
+ public static void main(String[] args) {
+     List<String> list = new ArrayList<String>();
+     list.add("大白");
+     list.add("小白");
+
+     list.removeIf(str -> str.equals("大白"));
+
+     list.forEach(System.out::println);
+ }
+}
+```
+
+
+
+***6. 集合元素的排序***
+
+以前我们为集合元素排序,调用sort方法,传入比较器匿名内部类,重写Comparator方法
+
+```java
+public class ListDemo3 {
+ public static void main(String[] args) {
+     List<Integer> list = new ArrayList<Integer>();
+     list.add(13);
+     list.add(14);
+     list.add(89);
+     list.add(5);
+
+     /*list.sort(new Comparator<Integer>() {
+
+         @Override
+         public int compare(Integer o1, Integer o2) {
+             return o1 - o2;
+         }
+     });*/
+
+     list.sort((o1,o2) -> o1 - o2);
+
+     list.forEach(System.out::println);
+ }
+}
+```
 
 
 
@@ -841,18 +977,27 @@ public void test1(){
 
   - 匿名内部类: 可以是接口\抽象类\具体类
   - Lambda: 只能是接口
-
 - 使用限制不同
 
   - 匿名内部类: 接口中可以有多个非默认抽象方法
   - Lambda: 接口中有一个需要实现的抽象方法
-
 - 使用原理不同
 
   - 匿名内部类: 编译生成匿名类字节码
   - Lambda: 在运行期间动态生成字节码
 
-  
+
+
+
+
+
+## 🐛API
+
+
+
+
+
+## 🦔异常
 
 
 

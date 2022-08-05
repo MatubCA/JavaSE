@@ -12,5 +12,5 @@ package com.dong;
 /* 无参有返回值 */
 @FunctionalInterface
 public interface ReturnNoParam {
-    String method();
+    int method();
 }

@@ -59,33 +59,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
-  <component name="RunManager" selected="应用程序.ListDemo3">
-    <configuration name="Exe1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.dong.Exe1" />
-      <module name="Lambda" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.dong.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Exe2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.dong.Exe2" />
-      <module name="Lambda" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.dong.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.LambdaTest.test4">
     <configuration name="ListDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.dong.ListDemo" />
       <module name="Lambda" />
@@ -125,13 +99,45 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="LambdaTest.test4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Lambda" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.dong.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.dong" />
+      <option name="MAIN_CLASS_NAME" value="com.dong.LambdaTest" />
+      <option name="METHOD_NAME" value="test4" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LambdaTest.test5" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Lambda" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.dong.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.dong" />
+      <option name="MAIN_CLASS_NAME" value="com.dong.LambdaTest" />
+      <option name="METHOD_NAME" value="test5" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.LambdaTest.test4" />
+        <item itemvalue="JUnit.LambdaTest.test5" />
         <item itemvalue="应用程序.ListDemo3" />
         <item itemvalue="应用程序.ListDemo2" />
         <item itemvalue="应用程序.ListDemo" />
-        <item itemvalue="应用程序.Exe2" />
-        <item itemvalue="应用程序.Exe1" />
       </list>
     </recent_temporary>
   </component>
@@ -145,7 +151,7 @@
       <updated>1659500457037</updated>
       <workItem from="1659500458334" duration="22590000" />
       <workItem from="1659591967140" duration="1634000" />
-      <workItem from="1659596133902" duration="11527000" />
+      <workItem from="1659596133902" duration="11973000" />
     </task>
     <servers />
   </component>
