@@ -57,75 +57,84 @@
     <property name="project.structure.last.edited" value="项目" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
-  <component name="RunManager" selected="JUnit.LambdaTest.test4">
-    <configuration name="ListDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.dong.ListDemo" />
-      <module name="Lambda" />
+  <component name="RunManager" selected="JUnit.CatchExceptionTest.test4">
+    <configuration name="CatchExceptionTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Exception" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.dong.*" />
+          <option name="PATTERN" value="com.dong.exception.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.dong.exception" />
+      <option name="MAIN_CLASS_NAME" value="com.dong.exception.CatchExceptionTest" />
+      <option name="METHOD_NAME" value="test1" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ListDemo2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.dong.ListDemo2" />
-      <module name="Lambda" />
+    <configuration name="CatchExceptionTest.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Exception" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.dong.*" />
+          <option name="PATTERN" value="com.dong.exception.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.dong.exception" />
+      <option name="MAIN_CLASS_NAME" value="com.dong.exception.CatchExceptionTest" />
+      <option name="METHOD_NAME" value="test2" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ListDemo3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.dong.ListDemo3" />
-      <module name="Lambda" />
+    <configuration name="CatchExceptionTest.test3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Exception" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.dong.*" />
+          <option name="PATTERN" value="com.dong.exception.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="com.dong.exception" />
+      <option name="MAIN_CLASS_NAME" value="com.dong.exception.CatchExceptionTest" />
+      <option name="METHOD_NAME" value="test3" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LambdaTest.test4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Lambda" />
+    <configuration name="CatchExceptionTest.test4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Exception" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.dong.*" />
+          <option name="PATTERN" value="com.dong.exception.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.dong" />
-      <option name="MAIN_CLASS_NAME" value="com.dong.LambdaTest" />
+      <option name="PACKAGE_NAME" value="com.dong.exception" />
+      <option name="MAIN_CLASS_NAME" value="com.dong.exception.CatchExceptionTest" />
       <option name="METHOD_NAME" value="test4" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LambdaTest.test5" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Lambda" />
+    <configuration name="CommonExceptionTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Exception" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.dong.*" />
+          <option name="PATTERN" value="com.dong.exceptionDemo.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.dong" />
-      <option name="MAIN_CLASS_NAME" value="com.dong.LambdaTest" />
-      <option name="METHOD_NAME" value="test5" />
+      <option name="PACKAGE_NAME" value="com.dong.exceptionDemo" />
+      <option name="MAIN_CLASS_NAME" value="com.dong.exceptionDemo.CommonExceptionTest" />
+      <option name="METHOD_NAME" value="test1" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -133,11 +142,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LambdaTest.test4" />
-        <item itemvalue="JUnit.LambdaTest.test5" />
-        <item itemvalue="应用程序.ListDemo3" />
-        <item itemvalue="应用程序.ListDemo2" />
-        <item itemvalue="应用程序.ListDemo" />
+        <item itemvalue="JUnit.CatchExceptionTest.test4" />
+        <item itemvalue="JUnit.CatchExceptionTest.test3" />
+        <item itemvalue="JUnit.CatchExceptionTest.test2" />
+        <item itemvalue="JUnit.CatchExceptionTest.test1" />
+        <item itemvalue="JUnit.CommonExceptionTest.test1" />
       </list>
     </recent_temporary>
   </component>
@@ -151,11 +160,25 @@
       <updated>1659500457037</updated>
       <workItem from="1659500458334" duration="22590000" />
       <workItem from="1659591967140" duration="1634000" />
-      <workItem from="1659596133902" duration="11973000" />
+      <workItem from="1659596133902" duration="12798000" />
+      <workItem from="1659784350577" duration="3616000" />
+      <workItem from="1659837781264" duration="317000" />
+      <workItem from="1659838126240" duration="15598000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

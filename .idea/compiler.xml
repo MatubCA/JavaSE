@@ -10,10 +10,14 @@
         <module name="Reflection" />
         <module name="Collections" />
         <module name="Lambda" />
+        <module name="Algorithm" />
+        <module name="Exception" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Algorithm" target="8" />
       <module name="Collections" target="8" />
+      <module name="Exception" target="8" />
       <module name="InnerClass" target="8" />
       <module name="Lambda" target="8" />
       <module name="Reflection" target="8" />
