@@ -23,30 +23,19 @@ public class CollectionTest {
         addAll(Collection coll)
      */
     @Test
-    public void test1(){
-        List list = new ArrayList();
-        list.add("大白");
-        list.add("小白");
-        list.add("哈哈");
-        list.add("薇薇");
-        list.add("嘻嘻");
-        list.add(88);
-
-        List list1 = new ArrayList();
+    public void test1() {
+        List<String> list1 = new ArrayList<>();
         list1.add("大白");
         list1.add("小白");
-        list1.add("中白");
+        list1.forEach(System.out::println);
 
-        for (Object o : list) {
-            System.out.println(o);
-        }
-        System.out.println("===========================================");
+        List<String> list2 = new ArrayList<>();
+        list2.add("大白");
+        list2.add("小白");
+        list2.forEach(System.out::println);
 
-        list1.addAll(list);
-        for (Object o : list1) {
-            System.out.println(o);
-        }
-        System.out.println("============================================");
+        list1.addAll(list2);
+        list1.forEach(System.out::println);
     }
 
     /*
@@ -54,17 +43,12 @@ public class CollectionTest {
         int size()
      */
     @Test
-    public void test2(){
-        List list = new ArrayList();
+    public void test2() {
+        List<String> list = new ArrayList<>();
         list.add("大白");
         list.add("小白");
-        list.add("哈哈");
-        list.add("薇薇");
-        list.add("嘻嘻");
-        list.add(88);
 
-        int size = list.size();
-        System.out.println(size);
+        System.out.println(list.size());
     }
 
     /*
@@ -72,23 +56,13 @@ public class CollectionTest {
         void clear()
      */
     @Test
-    public void test3(){
-        List list = new ArrayList();
+    public void test3() {
+        List<String> list = new ArrayList<>();
         list.add("大白");
         list.add("小白");
-        list.add("哈哈");
-        list.add("薇薇");
-        list.add("嘻嘻");
-        list.add(88);
-
-        for (Object o : list) {
-            System.out.println(o);
-        }
-        System.out.println("==============================================");
 
         list.clear();
-        int size = list.size();
-        System.out.println(size);
+        list.forEach(System.out::println);
     }
 
     /*
@@ -96,21 +70,12 @@ public class CollectionTest {
         Boolean isEmpty()
      */
     @Test
-    public void test4(){
-        List list = new ArrayList();
+    public void test4() {
+        List<String> list = new ArrayList<>();
         list.add("大白");
         list.add("小白");
-        list.add("哈哈");
-        list.add("薇薇");
-        list.add("嘻嘻");
-        list.add(88);
 
-        List list1 = new ArrayList();
-
-        boolean empty = list.isEmpty();
-        boolean empty1 = list1.isEmpty();
-        System.out.println(empty);
-        System.out.println(empty1);
+        System.out.println(list.isEmpty());
     }
 
     /*
@@ -119,53 +84,40 @@ public class CollectionTest {
         boolean containsAll(Collection coll)
      */
     @Test
-    public void test5(){
-        List list = new ArrayList();
+    public void test5() {
+        List<String> list = new ArrayList<>();
         list.add("大白");
         list.add("小白");
-        list.add("哈哈");
-        list.add("薇薇");
-        list.add("嘻嘻");
-        list.add(88);
 
-        List list1 = new ArrayList();
+        List<String> list1 = new ArrayList<>();
         list1.add("大白");
-        list1.add("小白");
-        list1.add("中白");
 
-        boolean contains = list.contains("大白");
-        boolean containsAll = list.containsAll(list1);
-        System.out.println(contains);
-        System.out.println(containsAll);
+        System.out.println(list.contains("大白"));
+        System.out.println(list.containsAll(list1));
     }
 
     /*
         测试删除元素
         boolean remove(Object obj)删除第一次找到的元素
         boolean removeAll(Collection coll)括号里写自己,相当于清空
+        boolean removeIf(Object obj) 根据条件删除，使用Lambda表达式
      */
     @Test
-    public void test6(){
-        List list = new ArrayList();
+    public void test6() {
+        List<String> list = new ArrayList<>();
         list.add("大白");
         list.add("小白");
-        list.add("哈哈");
-        list.add("薇薇");
-        list.add("嘻嘻");
-        list.add(88);
+        list.add("中白");
 
-        List list1 = new ArrayList();
+        List<String> list1 = new ArrayList<>();
         list1.add("大白");
-        list1.add("小白");
 
-        boolean remove = list.remove("哈哈");
-        System.out.println(remove);
-        boolean removeAll = list.removeAll(list1);
-        System.out.println(removeAll);
-
-        for (Object o : list) {
-            System.out.println(o);
-        }
+        System.out.println(list.remove("大白"));
+        System.out.println(list.removeAll(list1));
+        list.removeIf((String str)->{
+            return str.equals("小白");
+        });
+        list.forEach(System.out::println);
     }
 
     /*
@@ -173,24 +125,18 @@ public class CollectionTest {
         boolean retainAll(Collection coll)将结果存放在当前集合中
      */
     @Test
-    public void test7(){
-        List list = new ArrayList();
+    public void test7() {
+        List<String> list = new ArrayList<>();
         list.add("大白");
         list.add("小白");
-        list.add("哈哈");
-        list.add("薇薇");
-        list.add("嘻嘻");
-        list.add(88);
 
-        List list1 = new ArrayList();
+
+        List<String> list1 = new ArrayList<>();
         list1.add("大白");
         list1.add("小白");
 
-        boolean retainAll = list.retainAll(list1);
-        System.out.println(retainAll);
-        for (Object o : list) {
-            System.out.println(o);
-        }
+        System.out.println(list.retainAll(list1));
+        list.forEach(System.out::println);
     }
 
     /*
@@ -198,21 +144,16 @@ public class CollectionTest {
         boolean equals(Object obj)
      */
     @Test
-    public void test8(){
-        List list = new ArrayList();
+    public void test8() {
+        List<String> list = new ArrayList<>();
         list.add("大白");
         list.add("小白");
-        list.add("哈哈");
-        list.add("薇薇");
-        list.add("嘻嘻");
-        list.add(88);
 
-        List list1 = new ArrayList();
+        List<String> list1 = new ArrayList<>();
         list1.add("大白");
         list1.add("小白");
 
-        boolean equals = list.equals(list1);
-        System.out.println(equals);
+        System.out.println(list.equals(list1));
     }
 
     /*
@@ -220,14 +161,10 @@ public class CollectionTest {
         Object[] toArray()
      */
     @Test
-    public void test9(){
-        List list = new ArrayList();
+    public void test9() {
+        List<String> list = new ArrayList<>();
         list.add("大白");
         list.add("小白");
-        list.add("哈哈");
-        list.add("薇薇");
-        list.add("嘻嘻");
-        list.add(88);
 
         Object[] objects = list.toArray();
         System.out.println(Arrays.toString(objects));
@@ -238,14 +175,10 @@ public class CollectionTest {
         hashCode()
      */
     @Test
-    public void test10(){
-        List list = new ArrayList();
+    public void test10() {
+        List<String> list = new ArrayList<>();
         list.add("大白");
         list.add("小白");
-        list.add("哈哈");
-        list.add("薇薇");
-        list.add("嘻嘻");
-        list.add(88);
 
         System.out.println(list.hashCode());
     }
@@ -255,16 +188,14 @@ public class CollectionTest {
         Iterator()
      */
     @Test
-    public void test11(){
-        List list = new ArrayList();
+    public void test11() {
+        List<String> list = new ArrayList<>();
         list.add("大白");
         list.add("小白");
-        list.add("哈哈");
-        list.add("薇薇");
-        list.add("嘻嘻");
-        list.add(88);
 
-        Iterator iterator = list.iterator();
-        System.out.println(iterator);
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
     }
 }

@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="InnerClass" />
         <module name="Reflection" />
+        <module name="API" />
         <module name="Collections" />
         <module name="Lambda" />
         <module name="Algorithm" />
@@ -16,6 +17,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Algorithm" target="8" />
+      <module name="API" target="8" />
       <module name="Collections" target="8" />
       <module name="Exception" target="8" />
       <module name="InnerClass" target="8" />

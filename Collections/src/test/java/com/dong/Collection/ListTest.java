@@ -1,5 +1,6 @@
 package com.dong.Collection;
 
+import com.dong.list.ListDemo;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -65,10 +66,15 @@ public class ListTest {
     }
 
     /*
-
+        测试删除List集合中重复元素
      */
     @Test
     public void test3(){
+        List<String> list = (List<String>) new ArrayList<String>();
+        list.add("你好");
+        list.add("你好");
 
+        ListDemo.getList(list);
+        list.forEach(System.out::println);
     }
 }

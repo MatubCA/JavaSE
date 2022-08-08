@@ -26,26 +26,39 @@ public class IteratorTest {
          要想再次遍历只能再次获取iterator
      */
     @Test
-    public void test1(){
-        List list = new ArrayList();
+    public void test1() {
+        List<String> list = new ArrayList<>();
         list.add("大白");
         list.add("小白");
         list.add("哈哈");
-        list.add("薇薇");
-        list.add("嘻嘻");
-        list.add(88);
 
         // 先使用hashNext()判断是否还有下一个元素
-        Iterator iterator = list.iterator();
-        while (iterator.hasNext()) {
-            Object next = iterator.next();
-            if (next.equals("大白")){
-                iterator.remove();
-            }
-        }
+        Iterator<String> iterator = list.iterator();
 
-        for (Object o : list) {
-            System.out.println(o);
+        while (iterator.hasNext()) {
+            if (iterator.next().equals("大白")) {
+                iterator.remove();
+                System.out.println(iterator.next());
+            }
+            System.out.println(iterator.next());
+        }
+    }
+
+    @Test
+    public void test2() {
+        List<String> list = new ArrayList<>();
+        list.add("大白");
+        list.add("小白");
+        list.add("哈哈");
+
+        // 先使用hashNext()判断是否还有下一个元素
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next().equals("大白")) {
+                iterator.remove();
+                System.out.println(iterator.next());
+            }
+            System.out.println(iterator.next());
         }
     }
 }
