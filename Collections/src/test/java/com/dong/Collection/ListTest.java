@@ -4,6 +4,7 @@ import com.dong.list.ListDemo;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -76,5 +77,15 @@ public class ListTest {
 
         ListDemo.getList(list);
         list.forEach(System.out::println);
+    }
+
+    @Test
+    public void test4() {
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(0,22);
+        list.add(0,33);
+        list.forEach(System.out::println);
+
+        HashMap
     }
 }

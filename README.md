@@ -1137,7 +1137,7 @@ public class BigDecimalTest {
 Arrays类用来操作数组
 
 ```java
-List asList(T...a)// 转化成List对象，注意返回的对象不是ArrayList或是Vector而是一个长度固定的List集合
+List asList(T...a)// 转化成List对象，注意返回的对象不是ArrayList或是Vector而是一个长度固定的List集合，只能使用相应包装类的的数组
 
 String toString(Object[] arr)// 将数组转化成字符串打印
     
@@ -1714,17 +1714,27 @@ List subList(int starIndex,int endIndex)// 返回两个索引之间的子集合
 
 ==***2）ArrayList***==
 
-最常用的List接口实现类
+最常用的List接口实现类，基于动态数组实现，支持随机访问
 
 在JDK8之前，一开始就创建一个长度为10的数组
 
 在JDK8之后，一开始创建一个长度为0的数组，当添加第一个元素的时候，再创建一个初始容量为10的数组，容量满了之后，扩容1.5倍
 
+```markdown
+The array buffer into which the elements of the ArrayList are stored. The capacity of the ArrayList is the length of this array buffer. Any empty ArrayList with elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA will be expanded to DEFAULT_CAPACITY when the first element is added
+(存储 ArrayList 元素的数组缓冲区。 ArrayList 的容量就是这个数组缓冲区的长度。当添加第一个元素时，任何具有 elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA 的空 ArrayList 都将扩展为 DEFAULT_CAPACITY)
+
+```
+
+
+
 
 
 ==***3）LinkedList***==
 
-双向链表，内部没有声明数组，而是定义了Node类型的first和last用于记录首末元素
+基于双向链表实现，内部没有声明数组，而是定义了Node类型的first和last用于记录首末元素
+
+可以快速的在链表中插入和删除元素，还可以用作栈、队列、双向队列
 
 - prev变量记录了上一个元素的位置
 - next变量记录了下一个变量的位置
@@ -1812,8 +1822,7 @@ HashSet中添加元素的过程：
 
 LinkedHashSet 是 HashSet 的子类
 
-LinkedHashSet 根据元素的 hashCode 值来决定元素的存储位置， 但它同时使用双向链表维护元素的次序，这使得元素看起来是以插入
-顺序保存的。保持链表顺序
+LinkedHashSet 根据元素的 hashCode 值来决定元素的存储位置， 具有HashSet的查找效率，同时使用双向链表保持元素插入顺序。
 
 LinkedHashSet插入性能略低于 HashSet，但在迭代访问 Set 里的全部元素时有很好的性能
 
@@ -1879,7 +1888,7 @@ TreeSet 两种排序方法：自然排序和定制排序。默认情况下，Tre
 
 - 定制排序
 
-  TreeSet的自然排序要求元素所属的类实现Comparable接口，如果元素所属的类没 有实现Comparable接口，或不希望按照升序(默认情况)的方式排列元素或希望按照 其它属性大小进行排序，则考虑使用定制排序。定制排序，通过Comparator接口来实现。需要重写compare(T o1,T o2)方法。
+  TreeSet的自然排序要求元素所属的类实现Comparable接口，如果元素所属的类没有实现Comparable接口，或不希望按照升序(默认情况)的方式排列元素或希望按照 其它属性大小进行排序，则考虑使用定制排序。定制排序，通过Comparator接口来实现。需要重写compare(T o1,T o2)方法。
 
   利用int compare(T o1,T o2)方法，比较o1和o2的大小：如果方法返回正整数，则表 示o1大于o2；如果返回0，表示相等；返回负整数，表示o1小于o2
 
@@ -1888,6 +1897,20 @@ TreeSet 两种排序方法：自然排序和定制排序。默认情况下，Tre
   此时，仍然只能向TreeSet中添加类型相同的对象。否则发生ClassCastException异常
 
   使用定制排序判断两个元素相等的标准是：通过Comparator比较两个元素返回了0
+
+  
+
+### Queue接口
+
+LinkedList
+
+可以用来实现双向队列
+
+PriorityQueue
+
+基于堆结构，用来实现优先队列
+
+
 
 
 
@@ -1901,7 +1924,7 @@ TreeSet 两种排序方法：自然排序和定制排序。默认情况下，Tre
 
 
 
-==***1）Map接口方法***==
+***`1）Map接口方法`***
 
 ```java
 /*
@@ -1930,7 +1953,7 @@ Set entrySet()// 返回所有键值对组成的Set集合
 
 
 
-==***2)HashMap***==
+``***2)HashMap***``
 
 HashMap是 Map 接口使用频率最高的实现类，允许使用null键和null值，与HashSet一样，不保证映射的顺序。
 
@@ -1952,7 +1975,9 @@ JDK1.8前后HashMap的变化：
 
   **数据结构：**
 
-  HashMap是数组+链表结构（链地址法）
+  HashMap是数组+链表结构（拉链法）
+
+  ![image-20220809112032652](https://raw.githubusercontent.com/MatubCA/Image/main/img2/202208091120735.png)
 
   HashMap的内部存储结构其实是数组和链表的结合。当实例化一个HashMap时， 系统会创建一个长度为Capacity的Entry数组，这个长度在哈希表中被称为容量 (Capacity)，在这个数组中可以存放元素的位置我们称之为“桶”(bucket)，每个bucket都有自己的索引，系统可以根据索引快速的查找bucket中的元素。每个bucket中存储一个元素，即一个Entry对象，但每一个Entry对象可以带一个引用变量，用于指向下一个元素，因此，在一个桶中，就有可能生成一个Entry链。而且新添加的元素作为链表的head
 
@@ -1980,6 +2005,8 @@ JDK1.8前后HashMap的变化：
 
   HashMap是数组+链表+红黑树结构
 
+  ![image-20220809112057759](https://raw.githubusercontent.com/MatubCA/Image/main/img2/202208091120842.png)
+
   HashMap的内部存储结构其实是数组+链表+树的结合。当实例化一个 HashMap时，会初始化initialCapacity和loadFactor，在put第一对映射关系 时，系统会创建一个长度为initialCapacity的Node数组，这个长度在哈希表中被称为容量(Capacity)，在这个数组中可以存放元素的位置我们称之为 “桶”(bucket)，每个bucket都有自己的索引，系统可以根据索引快速的查找bucket中的元素。每个bucket中存储一个元素，即一个Node对象，但每一个Node对象可以带 一个引用变量next，用于指向下一个元素，因此，在一个桶中，就有可能生成一个Node链。也可能是一个一个TreeNode对象，每一个TreeNode对象 可以有两个叶子结点left和right，因此，在一个桶中，就有可能生成一个TreeNode树。而新添加的元素作为链表的last，或树的叶子结点
 
   
@@ -1987,6 +2014,8 @@ JDK1.8前后HashMap的变化：
   **扩容机制：**
 
   当HashMap中的元素个数超过数组大小(数组总大小length,不是数组中个数 size) * loadFactor 时 ， 就会进行数组扩容 ， loadFactor 的默认值 (DEFAULT_LOAD_FACTOR)为0.75，这是一个折中的取值。也就是说，默认情况下，数组大小(DEFAULT_INITIAL_CAPACITY)为16，那么当HashMap中 元素个数超过16 * 0.75=12（这个值就是代码中的threshold值，也叫做临界值） 的时候，就把数组的大小扩展为 2 * 16=32，即扩大一倍，然后重新计算每个元素在数组中的位置，而这是一个非常消耗性能的操作，所以如果我们已经预知HashMap中元素的个数，那么预设元素的个数能够有效的提高HashMap的性能。当HashMap中的其中一个链的对象个数如果达到了8个，此时如果capacity没有达到64，那么HashMap会先扩容解决，如果已经达到了64，那么这个链会变成树，结点类型由Node变成TreeNode类型。当然，如果当映射关系被移除后，下次resize方法时判断树的结点个数低于6个，也会把树再转为链表
+
+   loadFactor：加载因子。决定元素在数组的存放的疏密程度，趋近于1，元素越密集，会导致查找元素困难；趋近于0，元素越稀疏，会导致数组利用率不高，loadFactor默认值为0.75
 
 JDK1.8前后区别总结：
 
@@ -2086,7 +2115,73 @@ Collections 类中提供了多个 synchronizedXxx() 方法，该方法可使将�
 
 ### 源码
 
-- ArrayList的扩容机制
+- ArrayList的内存分配与扩容机制
+
+  ```java
+  public class ArrayList<E> extends AbstractList<E>
+      // 实现RandomAccess,可以快速随机访问
+      // 实现了Clonable接口,覆盖了clone()方法,可以被克隆
+      // 实现了java.io.Serializable,表明ArrayList支持序列化
+          implements List<E>, RandomAccess, Cloneable, java.io.Serializable
+      
+  ...
+      // 空参构造
+  	public ArrayList() {
+      	this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
+      }
+  ...
+      // 初始数组为空数组
+      private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};
+  ...
+      // 第一次添加数组
+      public boolean add(E e) {
+      // 首先调用ensureCapacityInternal方法
+      	ensureCapacityInternal(size + 1);
+      // ArrayList添加元素底层是数组复制
+      	elementData[size++] = e;
+      	return true;
+  	}
+  ...
+      private void ensureCapacityInternal(int minCapacity) {
+      // 调用下面的两个方法
+      	ensureExplicitCapacity(calculateCapacity(elementData, minCapacity));
+  	}
+  ...
+      private static int calculateCapacity(Object[] elementData, int minCapacity) {
+      // 判断数组是否是空数组,也就是第一次添加
+      	if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
+              // 返回初始容量(10)和当前容量的最大值
+          	return Math.max(DEFAULT_CAPACITY, minCapacity);
+     	 	}
+      // 如果数组已经满了,size+1>10
+      // 返回当前容量
+      	return minCapacity;
+  	}
+  ...
+      private void ensureExplicitCapacity(int minCapacity) {
+      	modCount++;
+      // 现在minCapacity是11
+      	if (minCapacity - elementData.length > 0)
+              // ArrayList扩容的核心方法
+          	grow(minCapacity);
+  	}
+  ...
+      private void grow(int minCapacity) {
+     	 	int oldCapacity = elementData.length;
+      // 当前数组容右移一位,相当于除二,新数组容量变成老数组的1.5倍
+      	int newCapacity = oldCapacity + (oldCapacity >> 1);
+      // 两个if代表两种特殊情况,小于最小容量,大于最大容量
+      	if (newCapacity - minCapacity < 0)
+          	newCapacity = minCapacity;
+      	if (newCapacity - MAX_ARRAY_SIZE > 0)
+          	newCapacity = hugeCapacity(minCapacity);
+      // 调用Arrays.copyof方法,申请一个长度为newCapacity的数组,将elementData中的数组进行拷贝,并返回数组
+      	elementData = Arrays.copyOf(elementData, newCapacity);
+  	}
+      
+  ```
+
+- 
 
 
 
@@ -2094,11 +2189,23 @@ Collections 类中提供了多个 synchronizedXxx() 方法，该方法可使将�
 
 ==***ArrayList和LinkedList的异同：***==
 
-两者都线程不安全，相对于Vector执行效率更高
+1. 两者都是不同步的，也就是线程不安全，但都相对于Vector执行效率更高
+2. ArrayList底层基于Object数组，LinkedList底层基于双向链表
+3. 对于添加元素(add(Obbject obj)，默认添加到尾部)，ArrayList和LinkedList效率都很高，时间复杂度近似O(1)，然而对指定位置 i 的插入和删除 ，ArrayList的时间复杂度为O(n-i)，因为需要向前/向后移动元素，LinkedList的时间复杂度近似为O(n)，因为需要先找到指定位置
+4. ArrayList支持快速随机访问，而LinkedList不支持
+5. ArrayList的空间浪费主要是要在List列表后面预留一定的空间，而LinkedList的空间浪费主要是存储每个元素的空间要比ArrayList大，因为要存储前驱、后继和数据
 
-ArrayList基于动态数组的数据结构；LinkedList基于链表的数据结构
 
-对于随机访问，ArrayList效率比LinkedList高，因为LinkedList要移动指针；对于插入和删除数据LinkedList比ArrayList高，因为ArrayList要移动数据，删除向前移动，插入向后移动。
+
+==***三种获取长度的方法***==
+
+1. length属性是针对数组，获取数组长度
+2. length()方法是针对字符串，获取字符串长度
+3. size()方法是针对集合，获取集合元素的个数
+
+
+
+
 
 ==***ArrayList和Vector的异同：***==
 

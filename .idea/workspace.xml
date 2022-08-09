@@ -57,10 +57,23 @@
     <property name="project.structure.last.edited" value="项目" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
-  <component name="RunManager" selected="JUnit.IteratorTest.test2">
-    <configuration name="CollectionTest.test6" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ListTest.test4">
+    <configuration name="Demo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.dong.Collection.Demo" />
+      <module name="Collections" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.dong.Collection.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Demo.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Collections" />
       <extension name="coverage">
         <pattern>
@@ -69,40 +82,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.dong.Collection" />
-      <option name="MAIN_CLASS_NAME" value="com.dong.Collection.CollectionTest" />
-      <option name="METHOD_NAME" value="test6" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DateDemoTest.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="API" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.dong.date.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.dong.date" />
-      <option name="MAIN_CLASS_NAME" value="com.dong.date.DateDemoTest" />
-      <option name="METHOD_NAME" value="test2" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DateDemoTest.test3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="API" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.dong.date.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.dong.date" />
-      <option name="MAIN_CLASS_NAME" value="com.dong.date.DateDemoTest" />
-      <option name="METHOD_NAME" value="test3" />
+      <option name="MAIN_CLASS_NAME" value="com.dong.Collection.Demo" />
+      <option name="METHOD_NAME" value="test" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -140,13 +121,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ListTest.test4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Collections" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.dong.Collection.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.dong.Collection" />
+      <option name="MAIN_CLASS_NAME" value="com.dong.Collection.ListTest" />
+      <option name="METHOD_NAME" value="test4" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ListTest.test4" />
+        <item itemvalue="JUnit.Demo.test" />
+        <item itemvalue="应用程序.Demo" />
         <item itemvalue="JUnit.IteratorTest.test2" />
         <item itemvalue="JUnit.ListTest.test3" />
-        <item itemvalue="JUnit.CollectionTest.test6" />
-        <item itemvalue="JUnit.DateDemoTest.test3" />
-        <item itemvalue="JUnit.DateDemoTest.test2" />
       </list>
     </recent_temporary>
   </component>
@@ -163,7 +160,7 @@
       <workItem from="1659596133902" duration="12798000" />
       <workItem from="1659784350577" duration="3616000" />
       <workItem from="1659837781264" duration="317000" />
-      <workItem from="1659838126240" duration="31534000" />
+      <workItem from="1659838126240" duration="38499000" />
     </task>
     <servers />
   </component>
