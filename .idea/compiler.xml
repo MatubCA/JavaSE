@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="IO" />
         <module name="InnerClass" />
         <module name="Reflection" />
         <module name="API" />
@@ -13,6 +14,7 @@
         <module name="Lambda" />
         <module name="Algorithm" />
         <module name="Exception" />
+        <module name="Thread" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -21,8 +23,10 @@
       <module name="Collections" target="8" />
       <module name="Exception" target="8" />
       <module name="InnerClass" target="8" />
+      <module name="IO" target="8" />
       <module name="Lambda" target="8" />
       <module name="Reflection" target="8" />
+      <module name="Thread" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

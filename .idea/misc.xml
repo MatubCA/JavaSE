@@ -10,6 +10,9 @@
         <option value="$PROJECT_DIR$/Exception/pom.xml" />
         <option value="$PROJECT_DIR$/Algorithm/pom.xml" />
         <option value="$PROJECT_DIR$/API/pom.xml" />
+        <option value="$PROJECT_DIR$/IO/IO/pom.xml" />
+        <option value="$PROJECT_DIR$/IO/pom.xml" />
+        <option value="$PROJECT_DIR$/Thread/pom.xml" />
       </list>
     </option>
   </component>

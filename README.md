@@ -1,6 +1,21 @@
 # JavaSE
 
+<!--目录-->
 
+- [多态](# 多态)
+- [🦁抽象类](#🦁抽象类)
+
+
+
+
+
+// TODO
+
+
+
+
+
+<!--目录-->
 
 
 
@@ -131,7 +146,7 @@
 
 
 
-## 🦁抽象类
+## [🦁抽象类](#JavaSE)
 
 **什么是抽象类?**
 
@@ -1554,11 +1569,14 @@ public class AgeOutOfBoundsException extends RuntimeException {
 
 数组存在的弊端：
 
-
+- 一旦声明之后，长度不可变
+- 声明数组的类型决定了存储元素的类型
+- 数组中存储的元素是有序的、可重复的、特点单一
+- 没有定义属性及方法，操作不方便
 
 使用集合的好处：
 
-
+- 提供了存储数据的灵活性，可以存储不同数据类型的数据，还可以保存具有隐射关系的键值对
 
 ### 继承体系
 
@@ -1568,11 +1586,9 @@ public class AgeOutOfBoundsException extends RuntimeException {
 
 ### Collection接口
 
-Collection接口是List、Set、Queue接口的父接口。Collection中的定义的方法对于所有Collection的子类都有效。
+Collection接口是List、Set、Queue接口的父接口，其中定义的方法对于所有Collection的子类都有效。并且Collection接口实现了Iterator接口，所有Collection的子类都可以使用iteration和增强for循环。
 
-Collection接口实现了Iterator接口，所有Collection的子类都可以使用iteration和增强for循环
-
-***Collection接口的方法：***
+Collection接口的方法：
 
 ```java
 void add(Object obj)// 添加元素
@@ -1606,20 +1622,16 @@ int hashCode()// 获取当前集合对象的哈希值
 Iterator Iterator()// 获取迭代器,用于遍历集合
 ```
 
-
-
 ### Iterator接口
 
-只有实现了Iterator接口的类才允许使用迭代器和增强for循环，而增强for循环底层调用了Iterator接口方法
+只有实现了Iterator接口的类才允许使用迭代器和增强for循环，而增强for循环底层调用了Iterator接口方法.
 
-***迭代器方法：***
-
-注意：一个迭代器对象只能进行一次遍历
+迭代器方法：
 
 ```java
 /*
-hasNext() 检测指针是否有下一个元素,指针默认在第一个元素之前
-Next() 指针下移,返回所指元素
+boolean hasNext() 检测指针是否有下一个元素,指针默认在第一个元素之前
+Object Next() 指针下移,返回所指元素
 remove() 删除元素
 */
 
@@ -1680,6 +1692,11 @@ public void test2(){
 }
 ```
 
+一个迭代器对象只能进行一次遍历，指针移到尾部不能自动回到顶部
+
+```java
+```
+
 
 
 ### List接口
@@ -1736,6 +1753,8 @@ The array buffer into which the elements of the ArrayList are stored. The capaci
 
 可以快速的在链表中插入和删除元素，还可以用作栈、队列、双向队列
 
+但一般项目中不使用LinkedList，使用LinkedList的场景都可以被ArrayList取代，并且性能更好
+
 - prev变量记录了上一个元素的位置
 - next变量记录了下一个变量的位置
 
@@ -1776,43 +1795,128 @@ void removeAllElements()
 
 ### Set接口
 
-Set接口没有提供额外的方法。Set集合中不允许有重复元素。Set判断两个对象是否相等，不是使用“==”，而是使用equals()方法
-
-底层也是数组，初始容量为16，如果当利用率超过0.75（12），就会扩大容量到原来的两倍
 
 
+Set接口没有提供额外的方法。Set集合中不允许有重复元素。
+
+Set判断两个对象是否相等，必须equals方法和hashCode方法全部相等，因为在我们重写了这两个方法的情况下，equals代表着内容是否相同，hashCode代表着地址值是否相等。但是如果我们不去重写这两个方法，那么这两个方法默认继承自Object，而Object中的这两个方法equals比较的是地址值，hashCode方法比较的也是地址值
+
+底层基于数组，初始容量为16，如果当利用率超过0.75（12），就会扩大容量到原来的两倍
+
+
+
+
+
+- HashSet
+
+  - HashSet的特点
+
+    ```markdown
+    1. 最常用的 Set 实现类，基于哈希表+数组+链表+红黑树实现
+    2. 具有很好的存取、查找、删除元素性能，支持快速查找
+    3. 底层几乎和 HashMap 相同
+    4. 集合元素可以是null
+    5. 判断两个元素相等的标准 : 通过 hashCode() 方法比较相等,通过 equals() 方法比较也相等
+    ```
+
+    
+
+  - HashSet添加元素的过程
+
+    ```markdown
+    1. 通过对象的 hashCode() 获得哈希值
+    2. 通过哈希值与数组长度,计算出该元素存储在数组上的位置
+    3. 如果该位置没有元素直接添加,如果已经有元素,比较 equals() 方法,返回值为boolean类型
+    4. 返回值为true表示两个元素相同,不添加,达到去重效果
+    5. 返回值为false表示两个元素不相同,新添加元素进入数组位置,旧元素通过链表的方式,链接在新元素上
+    ```
+
+    
+
+  - 添加的元素为 java 内置类对象
+
+    ```java
+    // 直接添加,一般Java内置类都会重写equals()和hashCode()方法
+    
+    public void test4() {
+        HashSet<String> strings = new HashSet<>();
+        strings.add("小黑");
+        strings.add("小白");
+        System.out.println(strings);
+    }
+    ```
+
+    
+
+  - 添加的元素为自定义类对象
+
+    ```java
+    // 需要重写hashCode()和equals()方法,可以通过快捷键生成默认模板
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User2 user2 = (User2) o;
+        if (!Objects.equals(name, user2.name)) return false;
+        return Objects.equals(age, user2.age);
+    }
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (age != null ? age.hashCode() : 0);
+        return 100;
+    }
+    ```
+
+    
+
+  - 为什么要重写两个方法
+
+    ```markdown
+    1. 不重写hashCode()
+      - Object的hashCode()是为堆上的对象产生独特值,在添加的时候不同对象的哈希值肯定就是不同的,如果两个对象的地址值不同,但是有着相同的属性	  值,按理来说,应该将其中一个去掉的,但是因为哈希值不同,却都存储在了数组上
+    2. 不重写equals()
+      - 好了,现在我们重写了hashCode()方法,不再根据地址值获得哈希值了,而是根据属性值来获得哈希值,如果两个对象的属性相同将会被存储在数组的相     同位置,现在应该比较equals()方法,但是我们没有重写equals()方法,默认使用Object中的方法,比较的还是地址值,两个对象地址值肯定不相同,所     以通过拉链法存储在了数组的同一个位置上
+    ```
+
+    
+
+  - 重写两个方法的注意事项
+
+    ```markdown
+    1. 重写hashCode()方法的基本原则：
+      - 在序运行时，同一个对象多次调用 hashCode() 方法应该返回相同的值
+      - 当两个对象的 equals() 方法比较返回 true 时，这两个对象的 hashCode() 方法的返回值也应相等
+      - 对象中用作 equals() 方法比较的 Field，都应该用来计算 hashCode 值
+    2. 重写equals()方法的基本原则： 
+      - 当一个类有自己特有的“逻辑相等”概念，当改写equals()的时候，总是要改写hashCode()，根据一个类的equals方法（改写后），两个截然不同的实例有可能在逻辑上是相等的，但是，根据Object.hashCode()方法，它们仅仅是两个对象，因此，违反了“相等的对象必须具有相等的散列码”
+    ```
+
+    
+
+  - 名词解释
+
+    ```markdown
+    1. 散列函数
+    2. 哈希冲突
+    ```
+
+    
+
+- TreeSet
+
+- LinkedHashSet
+
+- 
 
 ==***1）HashSet***==
-
-最常用的Set实现类，基于哈希表实现，具有很好的存取、查找、删除元素性能，支持快速查找
-
-HasHSet不能保证元素的排列顺序。不是线程安全的。集合元素可以是null
-
-HashSet判断两个元素相等的标准：
-
-- 通过hashCode()方法比较相等
-- 通过equals()方法比较也相等
-
-
-
-对于存放在Set集合中对象，对应的类一定要重写equals()和hashCode()方法，以实现两个元素相等的标准：相等的对象一定有相同的散列码
-
-重写hashCode()方法的基本原则：
-
-- 在程序运行时，同一个对象多次调用 hashCode() 方法应该返回相同的值
-- 当两个对象的 equals() 方法比较返回 true 时，这两个对象的 hashCode() 方法的返回值也应相等
-- 对象中用作 equals() 方法比较的 Field，都应该用来计算 hashCode 值
-
-重写equals()方法的基本原则：
-
-- 当一个类有自己特有的“逻辑相等”概念，当改写equals()的时候，总是要改写hashCode()，根据一个类的equals方法（改写后），两个截然不 同的实例有可能在逻辑上是相等的，但是，根据Object.hashCode()方法，它们仅仅是两个对象，因此，违反了“相等的对象必须具有相等的散列码”。
-- 复写equals方法的时候一般都需要同时复写hashCode方法。通 常参与计算hashCode的对象的属性也应该参与到equals()中进行计算
 
 
 
 HashSet中添加元素的过程：
 
-当向HashSet中添加元素时，HashSet会调用该对象的hashCode()方法，来得到该对象的hashCode值，然后根据hashCode值，利用某种散列函数决定该对象在HashSet底层数组中的存储位置；如果两个元素hashCode的值相等，会再继续调用equals方法，如果结果为true，添加失败，如果为false，那么会保存该元素，但是数组的位置上已经有元素了，这时会通过链表的方式进行链接。如果两个元素的equals方法返回true，hashCode值不相等，HashSet会把它们存储在不同的位置
+当向HashSet中添加元素时，HashSet会调用该对象的hashCode()方法，来得到该对象的hashCode值，然后根据hashCode值，利用某种散列函数决定该对象在HashSet底层数组中的存储位置；如果两个元素hashCode的值相等，会再继续调用equals方法，如果结果为true，添加失败，如果为false，那么会保存该元素，但是数组的位置上已经有元素了，这时会通过链表的方式进行链接，也就是拉链法来消除哈希冲突。如果两个元素的equals方法返回true，hashCode值不相等，HashSet会把它们存储在不同的位置
 
 散列函数：散列函数会与底层数组长度相计算得到在数组中的下标，并且这种散列函数计算还能保证均匀存储元素，越是散列分布，散列函数设计的越好
 
@@ -1831,6 +1935,8 @@ LinkedHashSet插入性能略低于 HashSet，但在迭代访问 Set 里的全部
 ==***3）TreeSet***==
 
 TreeSet 是 SortedSet 接口的实现类，TreeSet 可以确保集合元素处于排序状态
+
+因为只有相同类的两个实例才会比较大小，所以向 TreeSet 中添加的应该是同 一个类的对象
 
 TreeSet底层使用红黑树结构存储数据，支持有序性操作，查询速度比List快，但没有HashSet高。HashSet查找时间复杂度为O(1)，而TreeSet则是O(logN)
 
@@ -1851,24 +1957,19 @@ SortedSet tailSet(fromElement)
 
 
 
+要想在TreeSet中存储对象，因为TreeSet要确保元素处于排序状态，必须根据某种排序规则进行排序，然后TreeSet根据这种排序规则保持元素的排序状态
+
 TreeSet 两种排序方法：自然排序和定制排序。默认情况下，TreeSet 采用自然排序
 
 - 自然排序
 
-  TreeSet 会调用集合元素的 compareTo(Object obj) 方法来比较元素之间的大小关系，然后将集合元素按升序(默认情况)排列
+  对于要在TreeSet中存储的元素，它所在的类必须实现Comparable接口，重写compareTo()方法，制定所在类对象的排序规则
 
-  如果试图把一个对象添加到 TreeSet 时，则该对象的类必须实现 Comparable 接口
+  如果我们存储的元素所在类是Java内置类，一般内置类都会实现Comparable接口，重写compareTo()方法
 
-  实现 Comparable 的类必须实现 compareTo(Object obj) 方法，两个对象即通过 compareTo(Object obj) 方法的返回值来比较大小
+  比如：BigDecimal、Character、Boolean、String、Date、Time...
 
-  ```java
-  @Override
-  public int compareTo(Object o) {
-      return 0;
-  }
-  ```
-
-  Comparable的典型实现：
+  他们的排序规则是：
 
   - BigDecimal、BigInteger 以及所有的数值型对应的包装类：按它们对应的数值大小 进行比较
   - Character：按字符的 unicode值来进行比较
@@ -1876,31 +1977,87 @@ TreeSet 两种排序方法：自然排序和定制排序。默认情况下，Tre
   - String：按字符串中字符的 unicode 值进行比较
   - Date、Time：后边的时间、日期比前面的时间、日期大
 
-  向 TreeSet 中添加元素时，只有第一个元素无须比较compareTo()方法，后面添 加的所有元素都会调用compareTo()方法进行比较
-
-  因为只有相同类的两个实例才会比较大小，所以向 TreeSet 中添加的应该是同 一个类的对象
-
-  对于 TreeSet 集合而言，它判断两个对象是否相等的唯一标准是：两个对象通 过 compareTo(Object obj) 方法比较返回值
-
-  当需要把一个对象放入 TreeSet 中，重写该对象对应的 equals() 方法时，应保 证该方法与 compareTo(Object obj) 方法有一致的结果：如果两个对象通过 equals() 方法比较返回 true，则通过 compareTo(Object obj) 方法比较应返回 0。否则，让人难以理解。
+  ```java 
+  public final class String implements java.io.Serializable, Comparable<String>, CharSequence {
+      ...
+      public int compareTo(String anotherString) {
+      	int len1 = value.length;
+      	int len2 = anotherString.value.length;
+      	int lim = Math.min(len1, len2);
+      	char v1[] = value;
+      	char v2[] = anotherString.value;
+      	int k = 0;
+      	while (k < lim) {
+          	char c1 = v1[k];
+          	char c2 = v2[k];
+          	if (c1 != c2) {
+              	return c1 - c2;
+          	}
+          	k++;
+      	}
+      	return len1 - len2;
+    	}
+  }
+  ```
 
   
 
-- 定制排序
+  如果我们存储的元素所在类是自定义类，必须手动让所在类实现Comparable接口，重写compareTo()方法，制 定我们指定的排序规则
 
-  TreeSet的自然排序要求元素所属的类实现Comparable接口，如果元素所属的类没有实现Comparable接口，或不希望按照升序(默认情况)的方式排列元素或希望按照 其它属性大小进行排序，则考虑使用定制排序。定制排序，通过Comparator接口来实现。需要重写compare(T o1,T o2)方法。
+  ```java
+  class User implements Comparable<User>{
+      ...
+      @Override
+  	public int compareTo(User o) {
+      	int result = this.age - o.age;
+      	return result == 0 ? this.name.compareTo(o.name): result;
+  	}
+  }
+  ```
+
+  
+
+  第一个添加进TreeSet中的元素不需要进行比，随后添加的元素调用compareTo方法进行比较
+
+  若result小于0，代表当前对象小于第一个元素，将第二个元素排在第一个元素之前，若result大于0，将第二个元素排在第一个元素之后，若result等于0，可以进行元素对象其他属性的比较，排序规则自己制定
+
+  对于 TreeSet 集合而言，它判断两个对象是否相等的***唯一标准***是：两个对象通 过 compareTo(Object obj) 方法比较返回值
+
+  
+
+  在上面的例子中我们使用String类的compareTo()方法比较name，在这里有一个需要注意的点：
+
+  如果添加元素所在的类还需被HashMap存储，需要重写equals()方法，则必须保证equals()方法和compareTo()方法有一致的结果，比如：通过equals()方法得到true，那么compareTo()方法就应该返回0
+
+  
+
+- 定制排序（比较器排序）
+
+  如果元素所在类没有实现Comparable接口，重写compareTo()方法，或是我们对原有类中的排序规则不满意，这时我们可以使用定制排序（比较器排序）
+
+  我们在创建TreeSet的时候，需要将Comparable接口的实例作为形参传递给TreeSet的构造器，重写compareTo()方法，给当前TreeSet对象所在的类重新指定排序规则
+
+  ```java
+  TreeSet<User1> set = new TreeSet<>(new Comparator<User1>() {
+      @Override
+      public int compare(User1 o1, User1 o2) {
+          int result = o1.getAge() - o2.getAge();
+          return result == 0 ? o1.getName().compareTo(o2.getName()) : result;
+      }
+  });
+  ```
+
+  
 
   利用int compare(T o1,T o2)方法，比较o1和o2的大小：如果方法返回正整数，则表 示o1大于o2；如果返回0，表示相等；返回负整数，表示o1小于o2
 
-  要实现定制排序，需要将实现Comparator接口的实例作为形参传递给TreeSet的构造器
-
-  此时，仍然只能向TreeSet中添加类型相同的对象。否则发生ClassCastException异常
-
-  使用定制排序判断两个元素相等的标准是：通过Comparator比较两个元素返回了0
+  
 
   
 
 ### Queue接口
+
+按特定的排队规则来确定先后顺序，存储的元素是有序的、可重复的
 
 LinkedList
 
@@ -1916,15 +2073,11 @@ PriorityQueue
 
 ### Map接口
 
-用于保存具有映射关系的数据:key-value
-
- Map 中的 key 和 value 都可以是任何引用类型的数据
-
- Map 中的 key 用Set来存放，不允许重复，即同一个 Map 对象所对应的类，须重写hashCode()和equals()方法
+用于保存具有映射关系的数据：key-value。Map 中的 key 和 value 都可以是任何引用类型的数据。 key 用Set来存放，不允许重复。
 
 
 
-***`1）Map接口方法`***
+#### Map接口方法
 
 ```java
 /*
@@ -1953,19 +2106,69 @@ Set entrySet()// 返回所有键值对组成的Set集合
 
 
 
-``***2)HashMap***``
+#### HashMap
 
-HashMap是 Map 接口使用频率最高的实现类，允许使用null键和null值，与HashSet一样，不保证映射的顺序。
+- HashMap的特点
 
-所有的key构成的集合是Set：无序的、不可重复的。所以，key所在的类要重写 equals()和hashCode()
+  ```
 
-所有的value构成的集合是Collection：无序的、可以重复的。所以，value所在的类 要重写：equals()
+- 
 
-一个key-value构成一个entry，所有的entry构成的集合是Set：无序的、不可重复的
 
-HashMap 判断两个 key 相等的标准是：两个 key 通过 equals() 方法返回 true， hashCode 值也相等
 
-HashMap 判断两个 value相等的标准是：两个 value 通过 equals() 方法返回 true
+- HashMap
+
+  - HashMap特点
+
+    ```markdown
+    1. HashMap是 Map 接口使用频率最高的实现类
+    2. 允许使用null键和null值,null键只能有一个,不保证排列顺序
+    3. 所有key组成的是Set集合,所有value组成的是Collection集合
+    4. 一个key-value构成一个entry，所有的entry构成的集合是Set
+    5. 判断两个key相等的标准是 : equals()比较为true,hashCode()值相等
+    ```
+
+    
+
+  - JDK1.8之前的HashMap
+
+    ![image-20220809112032652](https://raw.githubusercontent.com/MatubCA/Image/main/img2/202208091120735.png)
+
+    ```markdown
+    	JDK1.8之前底层基于哈希表(数组+链表),使用拉链法解决哈希冲突
+    	当实例化一个HashMap时,会创建一个默认长度(Capacity)的entry数组.数组中存放元素的地方称为桶(bucket),每个桶中存放一个entry对象,每个entry对象都带有一个引用变量,用于指向下一个entry
+    
+    ```
+
+    
+
+    
+
+  - JDK1.8之后
+
+    ![image-20220809112057759](https://raw.githubusercontent.com/MatubCA/Image/main/img2/202208091120842.png)
+
+    JDK1.8之后底层基于哈希表(数组+链表)+红黑树
+
+  
+
+- TreeMap
+
+- LinkedHashMap
+
+- Hashtable
+
+- Properties
+
+- 
+
+==***1）Map接口方法***==
+
+```java
+
+```
+
+
 
 
 
@@ -1977,9 +2180,9 @@ JDK1.8前后HashMap的变化：
 
   HashMap是数组+链表结构（拉链法）
 
-  ![image-20220809112032652](https://raw.githubusercontent.com/MatubCA/Image/main/img2/202208091120735.png)
+  
 
-  HashMap的内部存储结构其实是数组和链表的结合。当实例化一个HashMap时， 系统会创建一个长度为Capacity的Entry数组，这个长度在哈希表中被称为容量 (Capacity)，在这个数组中可以存放元素的位置我们称之为“桶”(bucket)，每个bucket都有自己的索引，系统可以根据索引快速的查找bucket中的元素。每个bucket中存储一个元素，即一个Entry对象，但每一个Entry对象可以带一个引用变量，用于指向下一个元素，因此，在一个桶中，就有可能生成一个Entry链。而且新添加的元素作为链表的head
+  在这个数组中可以存放元素的位置我们称之为“桶”(bucket)，每个bucket都有自己的索引，系统可以根据索引快速的查找bucket中的元素。每个bucket中存储一个元素，即一个Entry对象，但每一个Entry对象可以带一个引用变量，用于指向下一个元素，因此，在一个桶中，就有可能生成一个Entry链。而且新添加的元素作为链表的head
 
   
 
@@ -2005,7 +2208,7 @@ JDK1.8前后HashMap的变化：
 
   HashMap是数组+链表+红黑树结构
 
-  ![image-20220809112057759](https://raw.githubusercontent.com/MatubCA/Image/main/img2/202208091120842.png)
+  
 
   HashMap的内部存储结构其实是数组+链表+树的结合。当实例化一个 HashMap时，会初始化initialCapacity和loadFactor，在put第一对映射关系 时，系统会创建一个长度为initialCapacity的Node数组，这个长度在哈希表中被称为容量(Capacity)，在这个数组中可以存放元素的位置我们称之为 “桶”(bucket)，每个bucket都有自己的索引，系统可以根据索引快速的查找bucket中的元素。每个bucket中存储一个元素，即一个Node对象，但每一个Node对象可以带 一个引用变量next，用于指向下一个元素，因此，在一个桶中，就有可能生成一个Node链。也可能是一个一个TreeNode对象，每一个TreeNode对象 可以有两个叶子结点left和right，因此，在一个桶中，就有可能生成一个TreeNode树。而新添加的元素作为链表的last，或树的叶子结点
 
@@ -2041,6 +2244,8 @@ LinkedHashMap 是 HashMap 的子类
 
 TreeSet底层使用红黑树结构存储数据
 
+只对key进行排序
+
 TreeMap存储 Key-Value 对时，需要根据 key-value 对进行排序。 TreeMap 可以保证所有的 Key-Value 对处于有序状态
 
 TreeMap 的 Key 的排序：
@@ -2069,7 +2274,7 @@ Hashtable判断两个key相等、两个value相等的标准，与HashMap一致
 
 ==***6)Properties***==
 
-Properties 类是 Hashtable 的子类，该对象用于处理属性文件
+Properties 类是 Hashtable 的子类，该对象用于处理小配置文件
 
 由于属性文件里的 key、value 都是字符串类型，所以 Properties 里的 key 和 value 都是字符串类型
 
@@ -2181,7 +2386,7 @@ Collections 类中提供了多个 synchronizedXxx() 方法，该方法可使将�
       
   ```
 
-- 
+
 
 
 
@@ -2191,7 +2396,7 @@ Collections 类中提供了多个 synchronizedXxx() 方法，该方法可使将�
 
 1. 两者都是不同步的，也就是线程不安全，但都相对于Vector执行效率更高
 2. ArrayList底层基于Object数组，LinkedList底层基于双向链表
-3. 对于添加元素(add(Obbject obj)，默认添加到尾部)，ArrayList和LinkedList效率都很高，时间复杂度近似O(1)，然而对指定位置 i 的插入和删除 ，ArrayList的时间复杂度为O(n-i)，因为需要向前/向后移动元素，LinkedList的时间复杂度近似为O(n)，因为需要先找到指定位置
+3. 对于在头尾添加元素，ArrayList和LinkedList效率都很高，时间复杂度近似O(1)，然而对指定位置 i 的插入和删除 ，ArrayList的时间复杂度为O(n-i)，因为需要向前/向后移动元素，LinkedList的时间复杂度近似为O(n)，因为需要先找到指定位置
 4. ArrayList支持快速随机访问，而LinkedList不支持
 5. ArrayList的空间浪费主要是要在List列表后面预留一定的空间，而LinkedList的空间浪费主要是存储每个元素的空间要比ArrayList大，因为要存储前驱、后继和数据
 
@@ -2205,21 +2410,49 @@ Collections 类中提供了多个 synchronizedXxx() 方法，该方法可使将�
 
 
 
-
-
 ==***ArrayList和Vector的异同：***==
 
-Vector和ArrayList几乎完全相同，唯一的区别在于Vector是同步类（synchronized），属于强同步类。因此开销比ArrayList大，访问要慢。因为同步可以由程序员自己来控制，所以大多数情况下，使用ArrayList而不是Vector
+1. Vector和ArrayList几乎完全相同
+2. Vector是同步类（synchronized），属于强同步，所以开销比ArrayList大，访问要慢。又因为同步完全可以由程序员控制，所以基本上不使用Vector
 
-与数组不同的是集合中只能存引用数据类型，存基本数据的话，要存对应的包装类,
 
 
+==***HashMap和Hashtable的区别：***==
+
+1. HashMap是线程安全的，Hashtable非线程安全
+2. 因为线程安全的问题，hashMap比hashtable效率高，现在hashtable基本上已经被淘汰了
+3. hashMap允许存储null为key和value，但null的key只能有一个，而hashtable不允许存储null为key或value
+4. hashMap初始容量为16，每次扩容为原来的2倍，hashtable初始容量为11，每次扩容为原来的2n+1
+5. 如果给了初始容量，hashtable会直接使用给的容量，hashMap会将其扩充为2的幂次方大小
+
+
+
+==***HashMap和HashSet的区别：***==
+
+- HashSet底层使用HashMap实现
+
+
+
+
+
+==***hashCode和equals的规定：***==
+
+1. 两个相等的对象，hashCode一定相同，equals的结果一定为true
+2. 两个对象有相等的hashCode值，两个对象也不一定相等
+3. 重写equals方法则必须重写hashCode，使两者保持不出现相悖的结果
+
+
+
+
+
+==*** ==和equals的区别：***==
+
+1. 对于基本数据类型，==比较的是值是否相等
+2. 对于引用数据类型，==比较的是地址值，如果equals没有被重写，对比的是他们地址值是否相等（底层使用 ==比较），如果equals被重写，则比较的是地址里的内容
 
 
 
 ## 🦄泛型
-
-
 
 
 
@@ -2235,12 +2468,6 @@ Vector和ArrayList几乎完全相同，唯一的区别在于Vector是同步类�
 
 
 
-
-
-
-
-
-
 ## 🤡网络编程
 
 
@@ -2249,35 +2476,7 @@ Vector和ArrayList几乎完全相同，唯一的区别在于Vector是同步类�
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## 🧠多线程
-
-
-
-
-
-
-
-
-
-
 
 
 

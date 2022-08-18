@@ -29,6 +29,10 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://D:/JDK/JDK8/src.zip!/java/util/List.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://D:/JDK/JDK8/src.zip!/java/util/Collection.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -50,22 +54,33 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="项目" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="模块" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="JUnit.ListTest.test4">
-    <configuration name="Demo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.dong.Collection.Demo" />
-      <module name="Collections" />
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Java\JavaSE\IO\src\main\resources" />
+      <recent name="E:\Java\JavaSE" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.dong.stream" />
+    </key>
+  </component>
+  <component name="RunManager" selected="应用程序.Test5">
+    <configuration name="Test2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.dong.Test2" />
+      <module name="Thread" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.dong.Collection.*" />
+          <option name="PATTERN" value="com.dong.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -73,65 +88,56 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Demo.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Collections" />
+    <configuration name="Test3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.dong.Test3" />
+      <module name="Thread" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.dong.Collection.*" />
+          <option name="PATTERN" value="com.dong.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.dong.Collection" />
-      <option name="MAIN_CLASS_NAME" value="com.dong.Collection.Demo" />
-      <option name="METHOD_NAME" value="test" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IteratorTest.test2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Collections" />
+    <configuration name="Test4" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.dong.Test4" />
+      <module name="Thread" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.dong.Collection.*" />
+          <option name="PATTERN" value="com.dong.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.dong.Collection" />
-      <option name="MAIN_CLASS_NAME" value="com.dong.Collection.IteratorTest" />
-      <option name="METHOD_NAME" value="test2" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ListTest.test3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Collections" />
+    <configuration name="Test5" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.dong.Test5" />
+      <module name="Thread" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.dong.Collection.*" />
+          <option name="PATTERN" value="com.dong.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.dong.Collection" />
-      <option name="MAIN_CLASS_NAME" value="com.dong.Collection.ListTest" />
-      <option name="METHOD_NAME" value="test3" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ListTest.test4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Collections" />
+    <configuration name="ThreadTest.test8" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Thread" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.dong.Collection.*" />
+          <option name="PATTERN" value="com.dong.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.dong.Collection" />
-      <option name="MAIN_CLASS_NAME" value="com.dong.Collection.ListTest" />
-      <option name="METHOD_NAME" value="test4" />
+      <option name="PACKAGE_NAME" value="com.dong" />
+      <option name="MAIN_CLASS_NAME" value="com.dong.ThreadTest" />
+      <option name="METHOD_NAME" value="test8" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -139,11 +145,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ListTest.test4" />
-        <item itemvalue="JUnit.Demo.test" />
-        <item itemvalue="应用程序.Demo" />
-        <item itemvalue="JUnit.IteratorTest.test2" />
-        <item itemvalue="JUnit.ListTest.test3" />
+        <item itemvalue="应用程序.Test5" />
+        <item itemvalue="应用程序.Test4" />
+        <item itemvalue="应用程序.Test3" />
+        <item itemvalue="应用程序.Test2" />
+        <item itemvalue="JUnit.ThreadTest.test8" />
       </list>
     </recent_temporary>
   </component>
@@ -160,7 +166,17 @@
       <workItem from="1659596133902" duration="12798000" />
       <workItem from="1659784350577" duration="3616000" />
       <workItem from="1659837781264" duration="317000" />
-      <workItem from="1659838126240" duration="38499000" />
+      <workItem from="1659838126240" duration="46273000" />
+      <workItem from="1660101810066" duration="5449000" />
+      <workItem from="1660135577761" duration="681000" />
+      <workItem from="1660183916492" duration="6603000" />
+      <workItem from="1660200039820" duration="1680000" />
+      <workItem from="1660203092885" duration="7630000" />
+      <workItem from="1660358180007" duration="53898000" />
+      <workItem from="1660615657864" duration="326000" />
+      <workItem from="1660616342211" duration="44794000" />
+      <workItem from="1660732642601" duration="3176000" />
+      <workItem from="1660797387721" duration="1090000" />
     </task>
     <servers />
   </component>

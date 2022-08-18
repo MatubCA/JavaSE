@@ -86,6 +86,5 @@ public class ListTest {
         list.add(0,33);
         list.forEach(System.out::println);
 
-        HashMap
     }
 }
